@@ -1,0 +1,25 @@
+docker service ls
+docker stack deploy -c docker-compose.yml mydrupal
+docker secret inspect psqlpass
+ echo "secret"| docker secret create psqlpass
+docker secret create psqlpass "secret"
+
+docker node ls
+docker network ls
+docker container ls
+docker network create mynetswarm1 --driver overlay
+docker swarm join --token SWMTKN-1-1ttjocs5q8aw6vwwufmzm4oduh5mvbfayqubbozx1
+ei503zrvc-bmiy5m0xluau1sf7mapncyrq4 192.168.0.18:2377
+docker swarm leave --force
+docker swarm join-token manager
+docker service ps myngx
+docker container exec -it 619bf8ef3163 bash
+docker service create --name myngx --replicas 3 -p 5000:80 nginx
+
+
+
+
+
+
+
+
