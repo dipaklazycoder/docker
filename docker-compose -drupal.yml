@@ -1,0 +1,40 @@
+version: "3.1"
+services:
+    frontend:
+        image: drupal
+        ports:
+        - "8080:80"
+        networks:
+        - mynetswarm
+        depends_on:
+        - database
+        volumes:
+        - vol1:/var/www/html/modules
+        - vol2:/var/www/html/profiles
+        - vol3:/var/www/html/themes
+        - vol4:/var/www/html/sites
+    
+    database:
+        image: postgres
+        environment: 
+        - POSTGRES_PASSWORD_FILE=/run/secrets/psqlpass
+        secrets:
+        - psqlpass
+        networks:
+        - mynetswarm
+        volumes:
+        - db_data:/var/lib/postgresql/data
+    
+networks:
+    mynetswarm:
+    
+volumes:
+    vol1:
+    vol2:
+    vol3:
+    vol4:
+    db_data:
+    
+secrets:
+    psqlpass:
+        external: true
